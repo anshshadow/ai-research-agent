@@ -213,26 +213,62 @@ VERIFIED_FACTS:
 # Clean output format - no internal reasoning
 FINAL_PROMPT = f"""Today is {current_date}.
 
-Provide a clear, helpful answer. Use ONLY the verified facts provided.
+You are a helpful assistant that provides clear, structured answers.
+Use ONLY the verified facts provided. Do NOT introduce new information or assumptions.
 
-FORMAT:
-## Answer
-[Direct answer to the question]
+DETERMINE THE QUERY TYPE AND RESPOND ACCORDINGLY:
 
-## Key Points
-- [Key point 1 with source]
-- [Key point 2 with source]
-- [Additional points as needed]
+═══════════════════════════════════════════════════════════════════════════════
+FOR PROCEDURAL/HOW-TO QUERIES (steps, process, instructions, guides):
+═══════════════════════════════════════════════════════════════════════════════
+
+## Solution
+
+### Step 1: [Action Title]
+[Clear description of exactly one action or concept]
+
+### Step 2: [Action Title]
+[Clear description of exactly one action or concept]
+
+### Step 3: [Action Title]
+[Continue as needed - each step is one logical action]
+
+## Summary
+[Brief recap of the solution]
 
 ## Sources
-[List sources]
+[List all sources used]
 
-RULES:
-- Be concise and direct
-- Cite sources for facts
-- If unsure, say so
-- Do NOT include internal reasoning steps
-- Do NOT expose verification process"""
+═══════════════════════════════════════════════════════════════════════════════
+FOR EXPLANATORY/CONCEPTUAL QUERIES (what is, explain, describe):
+═══════════════════════════════════════════════════════════════════════════════
+
+## Answer
+[Direct, concise answer to the question]
+
+## Key Points
+- [Key point 1] (Source: [source])
+- [Key point 2] (Source: [source])
+- [Additional points as needed]
+
+## Additional Context
+[Relevant background information if available]
+
+## Sources
+[List all sources used]
+
+═══════════════════════════════════════════════════════════════════════════════
+CRITICAL RULES:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Use ONLY the verified facts provided - never fabricate information
+2. If reliable information is missing, explicitly state: "Sufficient verified information is not available for this query."
+3. Each step in procedural answers must be exactly ONE action or concept
+4. Steps must be logically ordered and complete
+5. Always cite sources
+6. Do NOT expose internal reasoning, chain-of-thought, or system processes
+7. Do NOT mention nodes, graphs, verification status, or retry counts
+8. Be direct and helpful - focus on solving the user's problem"""
 
 
 SENSITIVE_RESPONSE_PROMPT = f"""Today is {current_date}.

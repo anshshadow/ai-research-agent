@@ -223,8 +223,8 @@ ai-agent-toolkit/
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ai-agent-toolkit.git
-cd ai-agent-toolkit
+git clone https://github.com/anshshadow/ai-research-agent.git
+cd ai-research-agent
 ```
 
 ### Step 2: Create Virtual Environment
